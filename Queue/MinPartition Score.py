@@ -1,5 +1,5 @@
 class Solution(object):
-    def minimumPartitionScore(self, nums, k):
+    def minPartitionScore(self, nums, k):
         n = len(nums)
         
         pref = [0] * (n + 1)
