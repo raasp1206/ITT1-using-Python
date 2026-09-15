@@ -7,7 +7,6 @@ void swap(int* a, int* b) {
 }
 
 void backtrack(int* nums, int numsSize, int start, int*** result, int* returnSize) {
-
     if (start == numsSize) {
         (*result)[*returnSize] = (int*)malloc(numsSize * sizeof(int));
         for (int i = 0; i < numsSize; i++) {
@@ -18,9 +17,9 @@ void backtrack(int* nums, int numsSize, int start, int*** result, int* returnSiz
     }
 
     for (int i = start; i < numsSize; i++) {
-        swap(&nums[start], &nums[i]);       
-        backtrack(nums, numsSize, start + 1, result, returnSize); /
-        swap(&nums[start], &nums[i]);      
+        swap(&nums[start], &nums[i]); 
+        backtrack(nums, numsSize, start + 1, result, returnSize); 
+        swap(&nums[start], &nums[i]); 
     }
 }
 
@@ -29,11 +28,13 @@ int** permute(int* nums, int numsSize, int* returnSize, int** returnColumnSizes)
     for (int i = 1; i <= numsSize; i++) {
         total_permutations *= i;
     }
+
     int** result = (int**)malloc(total_permutations * sizeof(int*));
     *returnColumnSizes = (int*)malloc(total_permutations * sizeof(int));
     *returnSize = 0;
 
     backtrack(nums, numsSize, 0, &result, returnSize);
+
 
     for (int i = 0; i < total_permutations; i++) {
         (*returnColumnSizes)[i] = numsSize;
